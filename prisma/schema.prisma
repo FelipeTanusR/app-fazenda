@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model animal {
+  brinco String    @id(map: "pk") @db.VarChar(10)
+  idade  Int
+  d_nasc DateTime  @db.Date
+  d_obt  DateTime? @db.Date
+}
