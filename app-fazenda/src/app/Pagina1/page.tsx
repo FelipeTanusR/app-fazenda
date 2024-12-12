@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Layout from '../components/Layout';
-import ButtonContainer from '../components/ButtonContainer';
-import Button from '../components/Button';
+import Layout from '../../components/Layout';
+import ButtonContainer from '../../components/ButtonContainer';
+import Button from '../../components/Button';
 
 
 function buscar(){
@@ -16,8 +16,12 @@ export default function HomePage() {
       <Layout>
 
           <Button>Cadastrar animal</Button>
-          <Button>Buscar
-            <button onClick={buscar}></button>
+          <Button>
+            <div className="flex gap-4">
+              <Link href="/api/animal" className="flex items-center gap-2">
+                  <span className="gont-bold"> Buscar</span>
+              </Link>
+            </div>
           </Button>
       </Layout>
     );
