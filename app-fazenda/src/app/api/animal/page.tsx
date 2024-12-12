@@ -1,11 +1,14 @@
 import { NextApiRequest,NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 
+const prisma = new PrismaClient({log: ["query"]});
+
 export default async function (req:NextApiRequest, res:NextApiResponse) {
-    const prisma = new PrismaClient({log: ["query"]});
+    
     
     try{
         const animais = await prisma.animal.findMany();
+        console.log(animais)
         res.status(200);
         res.json({animais});
     }catch(e){
