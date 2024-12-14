@@ -7,9 +7,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+
+model User {
+  id String @id @default(cuid())
+  clerkUserId String @unique
+  email String @unique
+  name String?
+  imageUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  animal animal[]
+}
+
 model animal {
   brinco String    @id(map: "pk") @db.VarChar(10)
   idade  Int
   d_nasc DateTime  @db.Date
   d_obt  DateTime? @db.Date
+  userId String
+  user   User @relation(fields: [userId], references: [clerkUserId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 }
